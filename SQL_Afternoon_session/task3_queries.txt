@@ -1,0 +1,5 @@
+select b.startdate, count(p.dept_DATE) as patients
+from betweendatedemo b left outer join patient p
+on b.StartDate = p.dept_DATE
+group by b.StartDate
+having b.StartDate between curdate()-7 and curdate();

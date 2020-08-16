@@ -1,0 +1,4 @@
+SELECT d.doctor_name,d.dept,p.patient_name patient
+from doctor d 
+left join patient p
+on d.DOCTOR_ID = p.DOCTOR_ID
