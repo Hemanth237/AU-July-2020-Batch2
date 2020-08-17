@@ -1,0 +1,67 @@
+import java.io.*;
+class serial implements Serializable{
+    private static final long serialversionUID = 129348938L;
+    int a;
+    int b;
+    int c;
+    static String name;
+    static String dept;
+    public serial(int a, int b, int c, String name, String dept){
+        this.a = a;
+        this.b = b;
+        this.c = c;
+        serial.name = name;
+        serial.dept = dept;
+    }
+}
+public class ques4 {
+    public static void main(String[] args){
+        serial object = new serial(1,2,3,"pop","dept1");
+        String filename = "hemanth.txt";
+        try {
+            FileOutputStream file = new FileOutputStream(filename);
+            ObjectOutputStream out = new ObjectOutputStream(file);
+            out.writeObject(object);
+            out.close();
+            file.close();
+            printdata(object);
+            serial.name = "pop";
+            serial.dept = "dept1";
+        }
+        catch (IOException ex) {
+            System.out.println("IOException is caught");
+        }
+
+        object = null;
+        try {
+
+            FileInputStream file = new FileInputStream
+                    (filename);
+            ObjectInputStream in = new ObjectInputStream
+                    (file);
+            object = (serial) in.readObject();
+            in.close();
+            file.close();
+            printdata(object);
+        }
+
+        catch (IOException ex) {
+            System.out.println("IOException is caught");
+        }
+
+        catch (ClassNotFoundException ex) {
+            System.out.println("ClassNotFoundException" +
+                    " is caught");
+        }
+
+    }
+    public static void printdata(serial object1)
+    {
+        System.out.println("a = " + object1.a);
+        System.out.println("b = " + object1.b);
+        System.out.println("c = " + object1.c);
+        System.out.println("name = " + serial.name);
+        System.out.println("age = " + serial.dept);
+
+    }
+}

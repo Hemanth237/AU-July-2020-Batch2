@@ -1,0 +1,92 @@
+class Assignment {
+    public int calculate(String s) {
+        HashMap<Character, Integer> map = new HashMap<>();
+        map.put('+', 1);
+        map.put('-', 1);
+        map.put('*', 2);
+        map.put('/', 2);
+        map.put('(', Integer.MIN_VALUE);
+
+        Stack<Character> operator = new Stack<>();
+        Stack<Integer> operand = new Stack<>();
+        s = '(' + s + ')';
+
+        for(int i=0;i<s.length();i++){
+            char ch = s.charAt(i);
+
+            if(ch=='+' || ch == '-' || ch=='*' || ch=='/'){
+                while(!operator.isEmpty() && map.get(ch)<=map.get(operator.peek())){
+                    char op = operator.pop();
+                    int pop1 = operand.pop();
+                    int pop2 = operand.pop();
+                    switch(op){
+                        case '+':{
+                            operand.push(pop2+pop1);
+                            break;
+                        }
+                        case '-':{
+                            operand.push(pop2-pop1);
+                            break;
+                        }
+                        case '*':{
+                            operand.push(pop2*pop1);
+                            break;
+                        }
+                        case '/':{
+                            operand.push(pop2/pop1);
+                            break;
+                        }
+                    }
+                }
+                operator.push(ch);
+            }else if(ch=='('){
+                operator.push(ch);
+            }else if(ch==')'){
+                while(!operator.isEmpty() && operator.peek()!='('){
+                    char op = operator.pop();
+                    int pop1 = operand.pop();
+                    int pop2 = operand.pop();
+                    switch(op){
+                        case '+':{
+                            operand.push(pop2+pop1);
+                            break;
+                        }
+                        case '-':{
+                            operand.push(pop2-pop1);
+                            break;
+                        }
+                        case '*':{
+                            operand.push(pop2*pop1);
+                            break;
+                        }
+                        case '/':{
+                            operand.push(pop2/pop1);
+                            break;
+                        }
+                    }
+                }
+                operator.pop();
+            }else if(ch!=' '){
+                int x = 0;
+                while(Character.isDigit(s.charAt(i))){
+                    x = x*10 + Integer.valueOf(s.charAt(i)+"");
+                    i++;
+                }
+                i--;
+                operand.push(x);
+
+            }
+        }
+
+        return operand.pop();
+    }
+}
+public class Helloworld{
+    public static void main(String[] args){
+        Assignment f1 = new Assignment();
+        Scanner sc = new Scanner(System.in);
+        String st = sc.next();
+	int ans = f1.calculate(st);
+        System.out.println(ans);
+    }
+}

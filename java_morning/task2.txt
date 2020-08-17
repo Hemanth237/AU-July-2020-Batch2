@@ -1,0 +1,20 @@
+class Assignment {
+    public void print() {
+        String p = "* * * * * * ---------------------------------\n * * * * *  ---------------------------------";
+        String q = "---------------------------------------------";
+        for (int i = 0; i < 4; i++) {
+            System.out.println(p);
+        }
+        System.out.println("* * * * * * ---------------------------------");
+        for (int i = 0; i < 6; i++) {
+            System.out.println(q);
+        }
+    }
+}
+public class Helloworld{
+    public static void main(String[] args){
+        Assignment f1 = new Assignment();
+        f1.print();
+        System.out.println(ans);
+    }
+}

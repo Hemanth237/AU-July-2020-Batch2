@@ -1,0 +1,11 @@
+import java.util.*;
+public class ques2 {
+    public static void main(String[] args) {
+        TreeMap <String,String> map1 = new TreeMap <String,String> ();
+        map1.put("COL2", "POL1");
+        map1.put("COL1", "POL2");
+        map1.put("COL4", "POL3");
+        map1.put("COL3", "POL3");
+        System.out.println(map1.descendingKeySet());
+    }
+}

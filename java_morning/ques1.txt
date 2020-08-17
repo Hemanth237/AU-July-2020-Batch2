@@ -1,0 +1,11 @@
+import java.util.Scanner;
+public class ques1 {
+    public static void main(String [] args){
+        Scanner sc = new Scanner(System.in);
+        String text = sc.nextLine();
+        String pattern = sc.nextLine();
+        String replace = sc.nextLine();
+        String new_str = text.replaceAll(pattern, replace);
+        System.out.println(new_str);
+    }
+}
